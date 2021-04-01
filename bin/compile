@@ -139,7 +139,7 @@ build_and_install_freetds() {
     # adding --disable-debug to speed up compile
     cat <<EOF > ".build_options"
     ./configure \
-      "--with-tdsver=auto"\
+      "--with-tdsver=auto" \
       "--prefix=${APP_TARGET_DIR}" \
       --disable-odbc \
       --disable-debug \
