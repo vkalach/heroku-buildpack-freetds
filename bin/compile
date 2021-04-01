@@ -127,8 +127,7 @@ download_and_extract_freetds_archive() {
 build_and_install_freetds() {
   topic "Building FreeTDS against OpenSSL $(openssl version)"
   ( # directory changes in subshells have no effect
-    cd "${BUILD_DIR}"
-    echo ${BUILD_DIR}
+    cd "${BUILD_DIR}/${FREETDS_ARCHIVE_NAME}"
 
     # We must build at /app/... rather than in the BUILD_DIR because
     # the installation hardwires some paths and symlinks. In order for
@@ -138,15 +137,9 @@ build_and_install_freetds() {
     # FreeTDS advises caching the build options as below
     # adding --disable-odbc making linking easier and we don't need it
     # adding --disable-debug to speed up compile
-    cat <<EOF > ".build_options"
-    ./configure \
-      "--prefix=${APP_TARGET_DIR}" \
-      --disable-odbc \
-      --disable-debug \
-      "--with-tdsver=${TDS_VERSION}"
-EOF
+    /bin/bash ./configure --prefix=${APP_TARGET_DIR} --disable-odbc --disable-debug --with-tdsver=${TDS_VERSION}
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
-    /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
+    # /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
     # Flush make output to log since a file will be faster than printing to the screen.
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
     {
