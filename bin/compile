@@ -142,7 +142,7 @@ build_and_install_freetds() {
       "--prefix=${APP_TARGET_DIR}" \
       --disable-odbc \
       --disable-debug \
-      "--with-tdsver=${TDS_VERSION}"
+      "--with-tdsver=auto"
 EOF
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
     /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
