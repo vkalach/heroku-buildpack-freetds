@@ -145,7 +145,7 @@ build_and_install_freetds() {
     {
       make && make install && make clean
     } > build_log-make_install.stdout.log 2> build_log-make_install.stderr.log
-    cp .build_options build_log-* "${APP_TARGET_DIR}/"
+    # cp .build_options build_log-* "${APP_TARGET_DIR}/"
 
     cd "$BUILD_DIR"
     # shellcheck disable=SC2115
