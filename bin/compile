@@ -137,7 +137,7 @@ build_and_install_freetds() {
     # FreeTDS advises caching the build options as below
     # adding --disable-odbc making linking easier and we don't need it
     # adding --disable-debug to speed up compile
-    /bin/bash ./configure --prefix=${APP_TARGET_DIR} --disable-odbc --disable-debug --with-tdsver=${TDS_VERSION}
+    /bin/bash ./configure --prefix=${APP_TARGET_DIR} --disable-odbc --disable-debug --with-tdsver=${TDS_VERSION} --with-gnutls
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
     # /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
     # Flush make output to log since a file will be faster than printing to the screen.
