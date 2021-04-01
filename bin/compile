@@ -191,6 +191,8 @@ main() {
 
   configure_buildpack_env_vars
 
+  info tsql -C
+
   info "Install of FreeTDS ${FREETDS_VERSION} complete"
 }
 
