@@ -60,7 +60,7 @@ load_env_vars "FREETDS_VERSION" "FREETDS_ARCHIVE_NAME" "TDS_VERSION" "FREETDS_RE
 
 FREETDS_VERSION="${FREETDS_VERSION:-1.2.21}"
 FREETDS_ARCHIVE_NAME="${FREETDS_ARCHIVE_NAME:-freetds-${FREETDS_VERSION}}"
-TDS_VERSION="${TDS_VERSION:-7.4}" # or TDSVER
+TDS_VERSION="${TDS_VERSION:-7.3}" # or TDSVER
 
 CACHED_TAR="${CACHE_DIR}/freetds-${FREETDS_VERSION}-heroku.tar.bz2"
 # Default rebuild to true since I'm having issues linking the library to tiny_tds gem with a cached build.
@@ -125,7 +125,7 @@ download_and_extract_freetds_archive() {
 }
 
 build_and_install_freetds() {
-  topic "Building FreeTDS against GnuTLS $(gnutls-cli --version)"
+  topic "Building FreeTDS against OpenSSL $(openssl --version)"
   ( # directory changes in subshells have no effect
     cd "${BUILD_DIR}/${FREETDS_ARCHIVE_NAME}"
 
@@ -142,8 +142,7 @@ build_and_install_freetds() {
       "--prefix=${APP_TARGET_DIR}" \
       --disable-odbc \
       --disable-debug \
-      "--with-tdsver=${TDS_VERSION}" \
-      "--with-gnutls"
+      "--with-tdsver=${TDS_VERSION}"
 EOF
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
     /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
