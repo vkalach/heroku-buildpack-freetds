@@ -142,6 +142,7 @@ build_and_install_freetds() {
     ./configure \
       "--prefix=${APP_TARGET_DIR}" \
       "--with-tdsver=${TDS_VERSION}" \
+      "--with-unixodbc=${APP_TARGET_DIR}/unixodbc" \
       "--enable-krb5"
 EOF
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
