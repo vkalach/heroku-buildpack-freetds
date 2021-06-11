@@ -141,7 +141,6 @@ build_and_install_freetds() {
     ./configure \
       "--prefix=${APP_TARGET_DIR}" \
       "--with-unixodbc=${APP_TARGET_DIR}/unixodbc" \
-      --disable-debug \
       "--with-tdsver=${TDS_VERSION}" \
       "--enable-krb5"
 EOF
