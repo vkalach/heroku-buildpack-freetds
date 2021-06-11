@@ -125,7 +125,7 @@ download_and_extract_freetds_archive() {
 }
 
 build_and_install_freetds() {
-  topic "Building FreeTDS against GnuTLS $(gnutls-cli --version)"
+  topic "Building FreeTDS against OpenSSL $(openssl version)"
   ( # directory changes in subshells have no effect
     cd "${BUILD_DIR}/${FREETDS_ARCHIVE_NAME}"
 
@@ -142,8 +142,7 @@ build_and_install_freetds() {
       "--prefix=${APP_TARGET_DIR}" \
       --disable-odbc \
       --disable-debug \
-      "--with-tdsver=${TDS_VERSION}" \
-      "--with-gnutls"
+      "--with-tdsver=${TDS_VERSION}"
 EOF
     # TODO(BF): Print log when HEROKUR_FREETDS_BUILDPACK_DEBUG is set
     /bin/bash .build_options > build_log-configure.stdout.log 2> build_log-configure.stderr.log
