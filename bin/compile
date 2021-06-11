@@ -137,6 +137,7 @@ build_and_install_freetds() {
     # FreeTDS advises caching the build options as below
     # adding --disable-odbc making linking easier and we don't need it
     # adding --disable-debug to speed up compile
+    mkdir ${APP_TARGET_DIR}/unixodbc
     cat <<EOF > ".build_options"
     ./configure \
       "--prefix=${APP_TARGET_DIR}" \
